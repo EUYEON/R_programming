@@ -1,0 +1,32 @@
+# R_programming
+##I'll change makecachevactor to MakecacheMatrix funtion
+##I change m->Inver mean->inverse
+makeCacheMatrix <- function(x = matrix()) {
+        Inver <- NULL
+        set <- function(y) {
+                x <<- y
+                Inver <<- NULL
+        }
+        get <- function() x
+        setInver <- function(inverse)Inver <<- inverse
+        getInver <- function() Inver
+        list(set = set, get = get,
+             setInver = setInver,
+             getInver = getInver)
+}
+
+
+cacheSolve <- function(x, ...) {
+        Inver <- x$getInver()
+        if(!is.null(Inver)) {
+                message("getting cached matrix")
+                return(Inver)
+        }
+        matx <- x$get()
+        Inver <- solve(matx, ...)
+        x$setInver(Inver)
+        Inver
+}
+##it is cacheSolve, so I can change mean to solve.
+##and the value m was changed to Inver because, I determine the value Inver
+##I'll change data to matx (it means matrix)
